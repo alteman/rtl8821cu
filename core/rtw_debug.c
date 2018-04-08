@@ -2397,6 +2397,7 @@ int proc_get_rx_signal(struct seq_file *m, void *v)
 	/* RTW_PRINT_SEL(m, "rxpwdb:%d\n", padapter->recvpriv.rxpwdb); */
 	RTW_PRINT_SEL(m, "signal_strength:%u\n", padapter->recvpriv.signal_strength);
 	RTW_PRINT_SEL(m, "signal_qual:%u\n", padapter->recvpriv.signal_qual);
+#ifdef CONFIG_MP_INCLUDED
 	if (padapter->registrypriv.mp_mode == 1) {
 		if (padapter->mppriv.antenna_rx == ANTENNA_A)
 			RTW_PRINT_SEL(m, "Antenna: A\n");
@@ -2416,7 +2417,7 @@ int proc_get_rx_signal(struct seq_file *m, void *v)
 			RTW_PRINT_SEL(m, "Antenna: __\n");
 		return 0;
 	}
-
+#endif
 	rtw_get_noise(padapter);
 	RTW_PRINT_SEL(m, "noise:%d\n", padapter->recvpriv.noise);
 #ifdef DBG_RX_SIGNAL_DISPLAY_RAW_DATA
